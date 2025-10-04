@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
 
     public ProjectileController laserPrefab;
 
-    private bool canMoveLeft = true;
-    private bool canMoveRight = true;
+    public bool canMoveLeft = true;
+    public bool canMoveRight = true;
  
     void Update()
     {
@@ -26,29 +26,7 @@ public class PlayerController : MonoBehaviour
             Shoot();            
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == "BorderRight")
-        {
-            canMoveRight = false;
-        }
-        if (collision.gameObject.name == "BorderLeft")
-        {
-            canMoveLeft = false; 
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == "BorderRight")
-        {
-            canMoveRight = true;
-        }
-        if (collision.gameObject.name == "BorderLeft")
-        {
-            canMoveLeft = true;
-        }
-
-    }
+    
     private void Shoot()
     {
         Instantiate(this.laserPrefab, this.transform.position, Quaternion.identity);
