@@ -918,6 +918,7 @@ MonoBehaviour:
   laserPrefab: {fileID: 2068823015}
   canMoveLeft: 1
   canMoveRight: 1
+  canShoot: 1
 --- !u!61 &647748702
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1792,7 +1793,7 @@ Transform:
   m_GameObject: {fileID: 869807519}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0425, y: 0.7677, z: -9.886065}
+  m_LocalPosition: {x: -0.024, y: 0.79, z: -9.886065}
   m_LocalScale: {x: 2.0429676, y: 0.31732583, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

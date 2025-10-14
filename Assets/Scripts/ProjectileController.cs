@@ -6,6 +6,12 @@ public class ProjectileController : MonoBehaviour
     public Vector3 direction;
     public float speed;
 
+    private PlayerController owner;
+
+    public void setOwner(PlayerController player)
+    {
+        owner = player;
+    }
     private void Update()
     {
         this.transform.position += this.direction * speed * Time.deltaTime;
@@ -17,4 +23,11 @@ public class ProjectileController : MonoBehaviour
             Destroy(this.gameObject);
         }
         }
+    private void OnDestroy()
+    {
+        if (owner != null)
+        {
+            owner.OnBulletDestroyed();
+                }
     }
+}

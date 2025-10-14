@@ -7,12 +7,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed = 5f;
 
     public ProjectileController laserPrefab;
+    private ProjectileController currentBullet;
 
     public bool canMoveLeft = true;
     public bool canMoveRight = true;
- 
+    public bool canShoot = true;
     void Update()
     {
+
         if (Input.GetKey(KeyCode.A) && canMoveLeft == true)
         {
             this.transform.position += Vector3.left * speed * Time.deltaTime;
@@ -21,16 +23,23 @@ public class PlayerController : MonoBehaviour
         {
             this.transform.position += Vector3.right * speed * Time.deltaTime;
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && canShoot == true && currentBullet == null)
         {
             Shoot();            
         }
     }
-    
+   
+
     private void Shoot()
     {
-        Instantiate(this.laserPrefab, this.transform.position, Quaternion.identity);
+       currentBullet = Instantiate(this.laserPrefab, this.transform.position, Quaternion.identity);
+       currentBullet.setOwner(this);
     }
+    public void OnBulletDestroyed ()
+    {
+        currentBullet = null;
+    }
+    
     
 
 }
