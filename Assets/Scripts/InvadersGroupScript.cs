@@ -7,7 +7,7 @@ public class InvadersGroupScript : MonoBehaviour
     public int collumns = 11;
     public float speed = 5;
     private Vector3 _direction = Vector2.right;
-
+    [SerializeField] private ScreenBorderData ScreenBorderData;
     private void Awake()
     {
         for (int row = 0; row < this.rows; row++)
@@ -31,20 +31,17 @@ public class InvadersGroupScript : MonoBehaviour
     {
         this.transform.position += _direction * speed * Time.deltaTime;
 
-        Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
-        Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
-
         foreach(Transform invader in this.transform)
         {
             if (!invader.gameObject.activeInHierarchy) 
             {
                 continue;
             }
-            if (_direction == Vector3.right && invader.position.x >= rightEdge.x)
+            if (_direction == Vector3.right && invader.position.x >= ScreenBorderData.Rightedge)
             {
                 AdvanceRow();
             }
-            else if(_direction == Vector3.left && invader.position.x <= leftEdge.x)
+            else if(_direction == Vector3.left && invader.position.x <= ScreenBorderData.Leftedge)
             {
                 AdvanceRow();
             }

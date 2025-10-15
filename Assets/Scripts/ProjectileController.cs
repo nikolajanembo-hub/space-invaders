@@ -20,7 +20,8 @@ public class ProjectileController : MonoBehaviour
     {
         if (collision.gameObject.name != "Player")
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
+            Destroy(collision.gameObject);
         }
         }
     private void OnDestroy()
