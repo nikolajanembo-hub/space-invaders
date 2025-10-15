@@ -18,7 +18,15 @@ public class ProjectileController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name != "Player")
+        if (collision.gameObject.GetComponent<PlayerController>())
+        {
+            return;
+        }
+        else if (collision.gameObject.tag == "Border")
+          {
+            Destroy(gameObject);
+        }
+       else
         {
             Destroy(this.gameObject);
             Destroy(collision.gameObject);
