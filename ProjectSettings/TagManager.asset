@@ -7,6 +7,7 @@ TagManager:
   - BorderRight
   - BorderLeft
   - New tag
+  - Border
   layers:
   - Default
   - TransparentFX

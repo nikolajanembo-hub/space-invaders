@@ -28,7 +28,7 @@ public class BorderScript : MonoBehaviour
         else
         {
             player.canMoveLeft = true;
-            Debug.Log(player);
+            
         }
     }
 }

@@ -30,6 +30,7 @@ public class ProjectileController : MonoBehaviour
         {
             Destroy(this.gameObject);
             Destroy(collision.gameObject);
+            ScoreManager.instance.AddPoint();
         }
         }
     private void OnDestroy()
