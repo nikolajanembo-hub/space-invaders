@@ -1,5 +1,7 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
@@ -8,10 +10,19 @@ public class PlayerController : MonoBehaviour
 
     public ProjectileController laserPrefab;
     private ProjectileController currentBullet;
+    private ProjectileController currentBullet2;
+    public ScoreManager currentScore;
 
     public bool canMoveLeft = true;
     public bool canMoveRight = true;
     public bool canShoot = true;
+    public IEnumerator doubleShoot()
+    {
+        Shoot();
+        yield return new WaitForSeconds(0.2f);
+        Shoot2();
+    }
+
     void Update()
     {
 
@@ -23,10 +34,15 @@ public class PlayerController : MonoBehaviour
         {
             this.transform.position += Vector3.right * speed * Time.deltaTime;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && canShoot == true && currentBullet == null)
+        if (Input.GetKeyDown(KeyCode.Space) && canShoot == true && currentBullet == null && currentScore.score <= 20)
         {
             Shoot();            
         }
+        if (Input.GetKeyDown(KeyCode.Space) && canShoot == true && currentBullet == null && currentBullet2 == null && currentScore.score > 20)
+        {
+            StartCoroutine(doubleShoot());
+        }
+        
     }
    
 
@@ -35,9 +51,15 @@ public class PlayerController : MonoBehaviour
        currentBullet = Instantiate(this.laserPrefab, this.transform.position, Quaternion.identity);
        currentBullet.setOwner(this);
     }
+    private void Shoot2()
+    {
+        currentBullet = Instantiate(this.laserPrefab, this.transform.position, Quaternion.identity);
+        currentBullet.setOwner(this);
+    }
     public void OnBulletDestroyed ()
     {
         currentBullet = null;
+        currentBullet2 = null;
     }
     
     
