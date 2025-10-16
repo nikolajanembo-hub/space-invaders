@@ -861,6 +861,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 549331098}
+  score: 0
 --- !u!1 &554920384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1226,6 +1227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.9
   laserPrefab: {fileID: 2068823015}
+  currentScore: {fileID: 549331100}
   canMoveLeft: 1
   canMoveRight: 1
   canShoot: 1
