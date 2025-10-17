@@ -10,6 +10,7 @@ public class InvadersGroupScript : MonoBehaviour
     private Vector3 _direction = Vector2.right;
     [SerializeField] private ScreenBorderData ScreenBorderData;
     public bool allInvadersDestroyed = true;
+    Vector3 Startingpostion;
     private void Awake()
     {
         for (int row = 0; row < this.rows; row++)
@@ -33,7 +34,7 @@ public class InvadersGroupScript : MonoBehaviour
     {
         this.transform.position += _direction * speed * Time.deltaTime;
 
-        bool allDestroyed = true; // Use a separate variable to track if all invaders are destroyed
+        bool allDestroyed = true; 
 
         foreach (Transform invader in this.transform)
         {
