@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InvadersGroupScript : MonoBehaviour
@@ -8,6 +9,7 @@ public class InvadersGroupScript : MonoBehaviour
     public float speed = 5;
     private Vector3 _direction = Vector2.right;
     [SerializeField] private ScreenBorderData ScreenBorderData;
+    public bool allInvadersDestroyed = true;
     private void Awake()
     {
         for (int row = 0; row < this.rows; row++)
@@ -31,9 +33,11 @@ public class InvadersGroupScript : MonoBehaviour
     {
         this.transform.position += _direction * speed * Time.deltaTime;
 
-        foreach(Transform invader in this.transform)
+        bool allDestroyed = true; // Use a separate variable to track if all invaders are destroyed
+
+        foreach (Transform invader in this.transform)
         {
-            if (!invader.gameObject.activeInHierarchy) 
+            if (!invader.gameObject.activeInHierarchy)
             {
                 continue;
             }
@@ -45,8 +49,36 @@ public class InvadersGroupScript : MonoBehaviour
             {
                 AdvanceRow();
             }
+
+            if (invader.gameObject.activeSelf)
+            {
+                allDestroyed = false;
+            }
+        }
+
+        allInvadersDestroyed = allDestroyed;
+
+        if (allInvadersDestroyed == true)
+        {
+            for (int row = 0; row < this.rows; row++)
+            {
+                float width = 0.12f * (this.collumns - 1);
+                float height = 0.12f * (this.rows - 1);
+
+                Vector2 centering = new Vector2(-width / 2, -height / 2);
+                Vector3 rowPositioning = new Vector3(centering.x, centering.y + (row * 0.12f), 0.0f);
+
+                for (int col = 0; col < this.collumns; col++)
+                {
+                    InvadersScript newInvader = Instantiate(this.prefabs[row], this.transform); // Renamed variable
+                    Vector3 position = rowPositioning;
+                    position.x += col * 0.12f;
+                    newInvader.transform.localPosition = position;
+                }
+            }
         }
     }
+     
     private void AdvanceRow()
     {
         _direction.x *= -1f;
