@@ -32,17 +32,16 @@ public class InvadersScript : MonoBehaviour
     }
     public void Hit()
     {
+        
         health--;
         if (health<=0)
         {
             Destroy(gameObject);
+            scoreData.Score++;
         }
     }
 
-    private void OnDestroy()
-    {
-        scoreData.Score++;
-    }
+ 
 
 }
 

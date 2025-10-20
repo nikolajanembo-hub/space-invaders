@@ -20,7 +20,7 @@ public class ScoreManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        data.Score = 0;
+        data.LoadScore();
     }
     private void Start()
     {
@@ -29,5 +29,9 @@ public class ScoreManager : MonoBehaviour
      public void ShowScore(int score) 
     {
         scoreText.text = score.ToString() + " points";
+    }
+    private void OnDestroy()
+    {
+        data.SaveScore();
     }
 }

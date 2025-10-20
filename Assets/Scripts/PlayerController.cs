@@ -119,10 +119,7 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-    private void Start()
-    {
-        ScoreManager.instance.scoreText.text = "Player Controller";
-    }
+  
 
 
 }
