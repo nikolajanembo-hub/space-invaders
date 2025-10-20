@@ -5,6 +5,7 @@ public class ProjectileController : MonoBehaviour
 {
     public Vector3 direction;
     public float speed;
+    [SerializeField] private ScoreData scoreData;
 
     private PlayerController owner;
 
@@ -29,15 +30,12 @@ public class ProjectileController : MonoBehaviour
        else
         {
             Destroy(this.gameObject);
-            Destroy(collision.gameObject);
-            ScoreManager.instance.AddPoint();
+            var invader = collision.gameObject.GetComponent<InvadersScript>();
+            if (invader != null)
+            {
+                invader.Hit();
+            }
         }
         }
-    private void OnDestroy()
-    {
-        if (owner != null)
-        {
-            owner.OnBulletDestroyed();
-                }
-    }
+   
 }

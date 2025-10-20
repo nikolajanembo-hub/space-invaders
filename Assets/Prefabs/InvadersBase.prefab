@@ -152,6 +152,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   animationTime: 1
+  scoreData: {fileID: 11400000, guid: e49860a29e04c664282364eb49644ca5, type: 2}
+  health: 1
 --- !u!50 &-5578803321085613939
 Rigidbody2D:
   serializedVersion: 5

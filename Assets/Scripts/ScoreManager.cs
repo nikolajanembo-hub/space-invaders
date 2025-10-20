@@ -6,20 +6,28 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
     public TMP_Text scoreText;
-    public int score = 0;
+    [SerializeField]private ScoreData data;
     public static ScoreManager instance;
+    private void OnEnable()
+    {
+        data.scoreChanged += ShowScore;
+    }
+    private void OnDisable()
+    {
+        data.scoreChanged -= ShowScore;
+    }
 
     private void Awake()
     {
         instance = this;
+        data.Score = 0;
     }
     private void Start()
     {
-        scoreText.text = score.ToString() + " points";
+        scoreText.text = data.Score.ToString() + " points";
     }
-    public void AddPoint() 
+     public void ShowScore(int score) 
     {
-        score += 1;
         scoreText.text = score.ToString() + " points";
     }
 }

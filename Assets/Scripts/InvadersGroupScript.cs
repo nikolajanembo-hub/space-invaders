@@ -10,9 +10,11 @@ public class InvadersGroupScript : MonoBehaviour
     private Vector3 _direction = Vector2.right;
     [SerializeField] private ScreenBorderData ScreenBorderData;
     public bool allInvadersDestroyed = true;
+    public ScoreData scoreData;
     Vector3 Startingpostion;
     private void Awake()
     {
+        Startingpostion = transform.position;
         for (int row = 0; row < this.rows; row++)
         {
             float width = 0.12f * (this.collumns - 1);
@@ -61,6 +63,7 @@ public class InvadersGroupScript : MonoBehaviour
 
         if (allInvadersDestroyed == true)
         {
+            transform.position = Startingpostion;
             for (int row = 0; row < this.rows; row++)
             {
                 float width = 0.12f * (this.collumns - 1);
@@ -71,13 +74,17 @@ public class InvadersGroupScript : MonoBehaviour
 
                 for (int col = 0; col < this.collumns; col++)
                 {
-                    InvadersScript newInvader = Instantiate(this.prefabs[row], this.transform); // Renamed variable
+                    InvadersScript newInvader = Instantiate(this.prefabs[row], this.transform); 
                     Vector3 position = rowPositioning;
                     position.x += col * 0.12f;
                     newInvader.transform.localPosition = position;
                 }
             }
         }
+        //if (!this.gameObject.IsDestroyed())
+        //{
+        //    scoreData.Score++;
+        //}
     }
      
     private void AdvanceRow()
