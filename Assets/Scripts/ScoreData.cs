@@ -11,18 +11,19 @@ public class ScoreData : ScriptableObject
     public int Score { get { return score; } set { score = value; scoreChanged?.Invoke(score); } }
     public void LoadScore()
     {
-        if (PlayerPrefs.HasKey(SCORE_ID))
-        {
-            score = PlayerPrefs.GetInt(SCORE_ID);
-        }
-        else
-        {
-            score = 0;
-        }
+        //if (PlayerPrefs.HasKey(SCORE_ID))
+        //{
+        //    score = PlayerPrefs.GetInt(SCORE_ID);
+        //}
+        //else
+        //{
+        //    score = 0;
+        //}
+        score = 0;
     }
     public void SaveScore()
     {
-        PlayerPrefs.SetInt(SCORE_ID, score);
+    //    PlayerPrefs.SetInt(SCORE_ID, score);
     }
     
 }

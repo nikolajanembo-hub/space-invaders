@@ -32,7 +32,10 @@ public class InvadersScript : MonoBehaviour
     }
     public void Hit()
     {
-        
+        if (health <= 0)
+        {
+            return;
+        }
         health--;
         if (health<=0)
         {
@@ -41,7 +44,16 @@ public class InvadersScript : MonoBehaviour
         }
     }
 
- 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.TryGetComponent<PlayerController>(out PlayerController player))
+        {
+            Destroy(player.gameObject);
+        }
+    }
+
+
+
 
 }
 

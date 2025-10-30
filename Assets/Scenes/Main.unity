@@ -691,6 +691,7 @@ MonoBehaviour:
   rows: 5
   collumns: 9
   speed: 0.2
+  speedIncrement: 0.15
   ScreenBorderData: {fileID: 11400000, guid: c92fffff163c18f478f6ca9450a80dfa, type: 2}
   allInvadersDestroyed: 1
   scoreData: {fileID: 0}
@@ -1233,8 +1234,8 @@ MonoBehaviour:
   scoreData: {fileID: 11400000, guid: e49860a29e04c664282364eb49644ca5, type: 2}
   screenBorderData: {fileID: 11400000, guid: c92fffff163c18f478f6ca9450a80dfa, type: 2}
   fireRate: 0.5
-  scoretoUpgrade: 3
-  bulletsinRow: 3
+  scoretoUpgrade: 20
+  bulletsinRow: 5
   Xoffset: 0.03
   shootDelay: 0.2
 --- !u!61 &647748702
@@ -2963,7 +2964,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

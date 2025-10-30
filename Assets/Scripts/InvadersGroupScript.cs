@@ -7,6 +7,7 @@ public class InvadersGroupScript : MonoBehaviour
     public int rows = 5;
     public int collumns = 11;
     public float speed = 5;
+    public float speedIncrement = 0.5f;
     private Vector3 _direction = Vector2.right;
     [SerializeField] private ScreenBorderData ScreenBorderData;
     public bool allInvadersDestroyed = true;
@@ -63,6 +64,7 @@ public class InvadersGroupScript : MonoBehaviour
 
         if (allInvadersDestroyed == true)
         {
+            speed += speedIncrement;
             transform.position = Startingpostion;
             for (int row = 0; row < this.rows; row++)
             {
@@ -81,10 +83,7 @@ public class InvadersGroupScript : MonoBehaviour
                 }
             }
         }
-        //if (!this.gameObject.IsDestroyed())
-        //{
-        //    scoreData.Score++;
-        //}
+       
     }
      
     private void AdvanceRow()
