@@ -119,9 +119,14 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(other.name);
+        if (collision.gameObject.GetComponent<InvadersScript>())
+        {
+            Destroy(gameObject);
+            GameManager.instance.gameState = GameState.Ended;
+        }
+        
     }
 
 

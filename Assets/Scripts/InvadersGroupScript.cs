@@ -35,6 +35,10 @@ public class InvadersGroupScript : MonoBehaviour
     }
     private void Update()
     {
+        if (GameManager.instance.gameState != GameState.Running)
+        {
+            return;
+        }
         this.transform.position += _direction * speed * Time.deltaTime;
 
         bool allDestroyed = true; 
